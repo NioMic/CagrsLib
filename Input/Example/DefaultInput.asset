@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dac1f4d07a4482b31846d48cc5b020, type: 3}
+  m_Name: DefaultInput
+  m_EditorClassIdentifier: 
+  configureName: DefaultInputSetting
+  operations:
+  - name: SwitchCursor
+    bindKeyCodes: 09000000
+  - name: CallCursor
+    bindKeyCodes: 1b000000
+  - name: Focus
+    bindKeyCodes: 43010000
+  - name: Jump
+    bindKeyCodes: 20000000
+  - name: Forward
+    bindKeyCodes: 7700000011010000
+  - name: Behind
+    bindKeyCodes: 7300000012010000
+  - name: Left
+    bindKeyCodes: 6100000014010000
+  - name: Right
+    bindKeyCodes: 6400000013010000
+  - name: Fire
+    bindKeyCodes: 2000000043010000
+  triggers:
+  - {fileID: 11400000, guid: 8e7de67468ac12f4386f228ef91e5dd3, type: 2}
+  - {fileID: 11400000, guid: 1855b50c236685e48b43d1cbc3f70371, type: 2}
+  - {fileID: 11400000, guid: c90f0bbfa53ea664582d899cb61b3f8e, type: 2}
+  axes:
+  - {fileID: 11400000, guid: b552e59cb7d4ab64dab99fde75004ee8, type: 2}
+  - {fileID: 11400000, guid: 7ed2f5cef3c84974c983ac1caf426108, type: 2}

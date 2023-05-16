@@ -1,0 +1,21 @@
+{
+  "name": "com.cagrslib.keyremap",
+  "version": "1.0.0",
+  "displayName": "CagrsKeyRemap",
+  "description": "KeyRemap",
+  "unity": "2019.1",
+  "dependencies": {
+    "com.cagrslib.input": "1.0.0",
+    "com.cagrslib.archive": "1.0.0",
+    "com.cagrslib": "1.0.0"
+  },
+  "keywords": [
+    "cagrslib",
+    "keyremap"
+  ],
+  "author": {
+    "name": "CatilGrass",
+    "email": "catilgrass@qq.com",
+    "url": "unknown"
+  }
+}
