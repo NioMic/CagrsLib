@@ -1,0 +1,17 @@
+{
+    "name": "CagrsLib.KeyRemap",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5bd98043603cc65498b66d8bb83e478a",
+        "GUID:6c9ade38190d8f94c8515bb94160a21c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

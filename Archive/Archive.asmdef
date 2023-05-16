@@ -1,0 +1,16 @@
+{
+    "name": "CagrsLib.Archive",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7611fe50611fa7d4b81269d44aeb6ca9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
