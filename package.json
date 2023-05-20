@@ -1,10 +1,11 @@
 {
   "name": "com.cagrslib",
-  "version": "3.1.1",
-  "displayName": "CagrsLib",
+  "version": "3.1.2",
+  "displayName": "CatilGrass's Game Framework",
   "description": "A Game Framework for CatilGrass and his team",
   "unity": "2019.1",
   "dependencies": {
+    "com.unity.nuget.newtonsoft-json" : "3.1.0"
   },
   "keywords": [
     "cagrslib",
@@ -13,6 +14,6 @@
   "author": {
     "name": "CatilGrass",
     "email": "catilgrass@qq.com",
-    "url": "unknown"
+    "url": "https://github.com/NioMic/CagrsLib/releases"
   }
 }
