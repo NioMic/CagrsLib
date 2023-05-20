@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.UIElements;
+
+#if UNITY_EDITOR
+using UnityEditorInternal;
+#endif
 
 namespace CagrsLib.LibCore
 {
@@ -20,6 +21,8 @@ namespace CagrsLib.LibCore
             return expressionBody.Member.Name;
         }
         
+        
+#if UNITY_EDITOR
         public static bool IsTagExist(string tag)
         {
             string[] tags = InternalEditorUtility.tags;
@@ -35,6 +38,7 @@ namespace CagrsLib.LibCore
             if (! IsTagExist(tagName)) 
                 InternalEditorUtility.AddTag(tagName);
         }
+#endif
         
         public static Transform FindNearest(Transform player, Transform[] objects)
         {
