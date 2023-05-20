@@ -1,3 +1,4 @@
+#if UNITY_EDITOR 
 using UnityEngine;
 
 namespace CagrsLib.SGraphView.Test
@@ -7,3 +8,4 @@ namespace CagrsLib.SGraphView.Test
         public SGraphData graphData;
     }
 }
+#endif

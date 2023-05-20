@@ -1,3 +1,4 @@
+#if UNITY_EDITOR 
 using UnityEngine;
 
 namespace CagrsLib.SGraphView
@@ -11,3 +12,4 @@ namespace CagrsLib.SGraphView
         string GetRegisterName();
     }
 }
+#endif

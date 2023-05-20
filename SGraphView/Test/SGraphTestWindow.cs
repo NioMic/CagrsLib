@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿#if UNITY_EDITOR 
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -165,3 +165,4 @@ namespace CagrsLib.SGraphView.Test
         #endregion
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR 
+using UnityEditor;
 using UnityEngine;
 
 namespace CagrsLib.SGraphView.Test.Editor
@@ -17,3 +18,4 @@ namespace CagrsLib.SGraphView.Test.Editor
         }
     }
 }
+#endif

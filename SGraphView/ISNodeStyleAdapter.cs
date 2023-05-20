@@ -1,3 +1,4 @@
+#if UNITY_EDITOR 
 using UnityEditor.Experimental.GraphView;
 
 namespace CagrsLib.SGraphView
@@ -7,3 +8,4 @@ namespace CagrsLib.SGraphView
         void OnChangeNodeStyle(Node node);
     }
 }
+#endif

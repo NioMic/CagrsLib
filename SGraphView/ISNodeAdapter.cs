@@ -1,3 +1,4 @@
+#if UNITY_EDITOR 
 using System.Collections.Generic;
 
 namespace CagrsLib.SGraphView
@@ -15,3 +16,4 @@ namespace CagrsLib.SGraphView
         string GetRegisterName();
     }
 }
+#endif
