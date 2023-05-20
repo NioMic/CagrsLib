@@ -13,23 +13,40 @@ namespace CagrsLib.Input.Windows
 
         #region KeyBoard
 
+        private static readonly string[] Row0 = {"ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"};
         private static readonly string[] Row1 = {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Back"};
         private static readonly string[] Row2 = {"Tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"};
         private static readonly string[] Row3 = {"Caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "Enter"};
         private static readonly string[] Row4 = {"Shift", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "Shift"};
         private static readonly string[] Row5 = {"Ctrl","Fn","Alt","Space","Alt","Fn","Ctrl","←","↓","↑","→"};
+        private static readonly string[] Row6 = {"Insert","Home","PageUp","K7","K8","K9","K-","KEnter"};
+        private static readonly string[] Row7 = {"Delete","End","PageDown","K4","K5","K6","K+", "K*"};
+        private static readonly string[] Row8 = {"←ML","MC","MR→","K1","K2","K3","K0", "K/"};
+        private static readonly string[] Row9 = {"M3","M4","M5","M6"};
     
+        // 一行788
+        
+        private static readonly float[] RowLength0 = {60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60};
         private static readonly float[] RowLength1 = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 138};
         private static readonly float[] RowLength2 = {120, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 70};
         private static readonly float[] RowLength3 = {130, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 110};
         private static readonly float[] RowLength4 = {140, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 150};
         private static readonly float[] RowLength5 = {120, 60, 60, 170, 60, 60, 60, 50, 50, 50, 50};
+        private static readonly float[] RowLength6 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength7 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength8 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength9 = {128, 128, 128, 128};
     
+        private static readonly KeyCode[] RowKeyCode0 = {KeyCode.Escape, KeyCode.F1, KeyCode.F2, KeyCode.F3, KeyCode.F4, KeyCode.F5, KeyCode.F6, KeyCode.F7, KeyCode.F8, KeyCode.F9, KeyCode.F10, KeyCode.F11, KeyCode.F12};
         private static readonly KeyCode[] RowKeyCode1 = {KeyCode.BackQuote, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0, KeyCode.Minus, KeyCode.Equals, KeyCode.Backspace};
         private static readonly KeyCode[] RowKeyCode2 = {KeyCode.Tab, KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O, KeyCode.P, KeyCode.LeftBracket, KeyCode.RightBracket, KeyCode.Backslash};
         private static readonly KeyCode[] RowKeyCode3 = {KeyCode.CapsLock, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.Semicolon, KeyCode.Quote, KeyCode.KeypadEnter};
         private static readonly KeyCode[] RowKeyCode4 = {KeyCode.LeftShift, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma, KeyCode.Period, KeyCode.Slash, KeyCode.RightShift};
         private static readonly KeyCode[] RowKeyCode5 = {KeyCode.LeftControl,KeyCode.Menu,KeyCode.LeftAlt,KeyCode.Space,KeyCode.RightAlt,KeyCode.Menu,KeyCode.RightControl,KeyCode.LeftArrow,KeyCode.DownArrow,KeyCode.UpArrow,KeyCode.RightArrow};
+        private static readonly KeyCode[] RowKeyCode6 = {KeyCode.Insert, KeyCode.Home, KeyCode.PageUp, KeyCode.Keypad7, KeyCode.Keypad8, KeyCode.Keypad9, KeyCode.KeypadMinus, KeyCode.KeypadEnter};
+        private static readonly KeyCode[] RowKeyCode7 = {KeyCode.Delete, KeyCode.End, KeyCode.PageDown, KeyCode.Keypad4, KeyCode.Keypad5, KeyCode.Keypad6, KeyCode.KeypadPlus, KeyCode.KeypadMultiply};
+        private static readonly KeyCode[] RowKeyCode8 = {KeyCode.Mouse0, KeyCode.Mouse1, KeyCode.Mouse2, KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3, KeyCode.Keypad0, KeyCode.KeypadDivide};
+        private static readonly KeyCode[] RowKeyCode9 = {KeyCode.Mouse3, KeyCode.Mouse4, KeyCode.Mouse5, KeyCode.Mouse6};
     
         #endregion
 
@@ -70,8 +87,8 @@ namespace CagrsLib.Input.Windows
 
             window._editConfigure = configure;
 
-            window.minSize = new Vector2(1100, 290);
-            window.maxSize = new Vector2(1100, 290);
+            window.minSize = new Vector2(1100, 580);
+            window.maxSize = new Vector2(1100, 580);
 
             window._removeOperations = new List<InputOperation>();
         }
@@ -106,11 +123,16 @@ namespace CagrsLib.Input.Windows
             
             GUILayout.BeginVertical();
             
+            DrawRow(Row0, RowLength0, RowKeyCode0);
             DrawRow(Row1, RowLength1, RowKeyCode1);
             DrawRow(Row2, RowLength2, RowKeyCode2);
             DrawRow(Row3, RowLength3, RowKeyCode3);
             DrawRow(Row4, RowLength4, RowKeyCode4);
             DrawRow(Row5, RowLength5, RowKeyCode5);
+            DrawRow(Row6, RowLength6, RowKeyCode6);
+            DrawRow(Row7, RowLength7, RowKeyCode7);
+            DrawRow(Row8, RowLength8, RowKeyCode8);
+            DrawRow(Row9, RowLength9, RowKeyCode9);
 
             GUILayout.EndVertical();
             

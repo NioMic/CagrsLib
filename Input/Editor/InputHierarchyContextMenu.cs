@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CagrsLib.Input.Editor
 {
-    public class InputHierarchyContextMenu : MonoBehaviour
+    public class InputHierarchyContextMenu
     {
         [MenuItem("GameObject/CagrsLib/InputManager", false, 10)]
         static void CreateInputManagerGameObject(MenuCommand menuCommand)
