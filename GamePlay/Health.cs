@@ -8,54 +8,83 @@ namespace CagrsLib.GamePlay
     [AddComponentMenu("CagrsLib/Gameplay/Health")]
     public class Health : MonoBehaviour
     {
-        public UnityEvent onDamageSignal;
-        public UnityEvent onHealthUpdate;
+        public UnityEvent<GameObject> onDamageSignal;
+        public UnityEvent<UpdateInfo> onHealthUpdate;
         
         [HideInInspector]
-        public float health;
+        public float health = 100;
         
         [HideInInspector]
-        public bool range = true;
+        public bool inRange = true;
 
         [HideInInspector]
-        public HealthRange healthRange;
+        public InRangeSetting inRangeSetting;
 
         public void Add(float add)
         {
+            float old = health;
+            
             Set(health + add);
 
-            onHealthUpdate.Invoke();
+            onHealthUpdate.Invoke(GetUpdateInfo(old, health));
         }
         
         public void Remove(float remove)
         {
+            float old = health;
+            
             Set(health - remove);
             
-            onHealthUpdate.Invoke();
+            onHealthUpdate.Invoke(GetUpdateInfo(old, health));
         }
 
         public void Set(float set)
         {
-            if (range)
+            float old = health;
+            
+            if (inRange)
             {
-                health = LibUtil.InRange(set, healthRange.min, healthRange.max);
+                health = LibUtil.InRange(set, inRangeSetting.min, inRangeSetting.max);
                 return;
             }
 
             health = set;
-            onHealthUpdate.Invoke();
+            
+            onHealthUpdate.Invoke(GetUpdateInfo(old, health));
         }
 
         public void Damage(float damage, GameObject attacker = null)
         {
-            onDamageSignal.Invoke();
             Remove(damage);
+            
+            onDamageSignal.Invoke(attacker);
         }
-        
+
+        private UpdateInfo GetUpdateInfo(float oldHealth, float newHealth)
+        {
+            if (oldHealth > newHealth)
+            {
+                return UpdateInfo.Remove;
+            }
+            
+            if (oldHealth < newHealth)
+            {
+                return UpdateInfo.Add;
+            }
+            
+            return UpdateInfo.NoChange;
+        }
+
         [Serializable]
-        public class HealthRange
+        public class InRangeSetting
         {
             public float min, max = 100;
+        }
+
+        [Serializable]
+        public enum UpdateInfo
+        {
+            Remove, Add, NoChange
         }
     }
 }

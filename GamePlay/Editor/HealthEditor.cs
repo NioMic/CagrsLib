@@ -14,8 +14,8 @@ namespace CagrsLib.GamePlay.Editor
             
             Health health = (Health)target;
 
-            float min = health.healthRange.min;
-            float max = health.healthRange.max;
+            float min = health.inRangeSetting.min;
+            float max = health.inRangeSetting.max;
 
             if (max < min || min > max)
             {
@@ -25,9 +25,9 @@ namespace CagrsLib.GamePlay.Editor
 
             base.OnInspectorGUI();
 
-            health.range = GUILayout.Toggle(health.range, "Enable Range");
+            health.inRange = GUILayout.Toggle(health.inRange, "Enable Range");
             
-            if (health.range)
+            if (health.inRange)
             {
                 health.health = EditorGUILayout.Slider("Current Health", health.health, 
                     min, max);
@@ -35,8 +35,8 @@ namespace CagrsLib.GamePlay.Editor
                 EditorGUILayout.Space();
                 
                 GUILayout.Label("Range");
-                health.healthRange.min = EditorGUILayout.FloatField("Min", min);
-                health.healthRange.max = EditorGUILayout.FloatField("Max", max);
+                health.inRangeSetting.min = EditorGUILayout.FloatField("Min", min);
+                health.inRangeSetting.max = EditorGUILayout.FloatField("Max", max);
             }
             else
             {
