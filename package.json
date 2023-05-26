@@ -1,6 +1,6 @@
 {
   "name": "com.cagrslib",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "displayName": "CatilGrass's Game Framework",
   "description": "A Game Framework for CatilGrass and his team",
   "unity": "2019.1",
