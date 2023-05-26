@@ -8,6 +8,7 @@ namespace CagrsLib.Input
     {
         public string configureName = "Untitled";
         
+        [HideInInspector]
         public List<InputOperation> operations;
         public List<InputTrigger> triggers;
         public List<InputAxis> axes;

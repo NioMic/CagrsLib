@@ -17,7 +17,7 @@ namespace CagrsLib.Input.Editor
 
             InputConfigure configure = (InputConfigure)target;
             
-            if (GUILayout.Button("Keyboard Bind", GUILayout.Height(30)))
+            if (GUILayout.Button("Operation Editor", GUILayout.Height(30)))
             {
                 if (configure.operations == null)
                 {

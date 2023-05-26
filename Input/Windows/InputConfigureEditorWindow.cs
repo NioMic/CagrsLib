@@ -11,6 +11,8 @@ namespace CagrsLib.Input.Windows
         private const int ButtonHeight = 50;
         private const int ButtonSpacing = 0;
 
+        private const int NameInputHeight = 45;
+
         #region KeyBoard
 
         private static readonly string[] Row0 = {"ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"};
@@ -19,23 +21,23 @@ namespace CagrsLib.Input.Windows
         private static readonly string[] Row3 = {"Caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "Enter"};
         private static readonly string[] Row4 = {"Shift", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "Shift"};
         private static readonly string[] Row5 = {"Ctrl","Fn","Alt","Space","Alt","Fn","Ctrl","←","↓","↑","→"};
-        private static readonly string[] Row6 = {"Insert","Home","PageUp","K7","K8","K9","K-","KEnter"};
-        private static readonly string[] Row7 = {"Delete","End","PageDown","K4","K5","K6","K+", "K*"};
+        private static readonly string[] Row6 = {"Insert","Home","PgUp","K7","K8","K9","K-","KEnter"};
+        private static readonly string[] Row7 = {"Delete","End","PgDown","K4","K5","K6","K+", "K*"};
         private static readonly string[] Row8 = {"←ML","MC","MR→","K1","K2","K3","K0", "K/"};
         private static readonly string[] Row9 = {"M3","M4","M5","M6"};
     
         // 一行788
         
-        private static readonly float[] RowLength0 = {60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60};
+        private static readonly float[] RowLength0 = {71, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60};
         private static readonly float[] RowLength1 = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 138};
-        private static readonly float[] RowLength2 = {120, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 70};
-        private static readonly float[] RowLength3 = {130, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 110};
-        private static readonly float[] RowLength4 = {140, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 150};
-        private static readonly float[] RowLength5 = {120, 60, 60, 170, 60, 60, 60, 50, 50, 50, 50};
-        private static readonly float[] RowLength6 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
-        private static readonly float[] RowLength7 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
-        private static readonly float[] RowLength8 = {128, 128, 128, 50, 50, 50, 50, 80, 120};
-        private static readonly float[] RowLength9 = {128, 128, 128, 128};
+        private static readonly float[] RowLength2 = {120, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 68};
+        private static readonly float[] RowLength3 = {130, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 111};
+        private static readonly float[] RowLength4 = {140, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 154};
+        private static readonly float[] RowLength5 = {126, 60, 60, 170, 60, 60, 60, 50, 50, 50, 50};
+        private static readonly float[] RowLength6 = {60, 60, 60, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength7 = {60, 60, 60, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength8 = {60, 60, 60, 50, 50, 50, 50, 80, 120};
+        private static readonly float[] RowLength9 = {60, 60, 60, 50};
     
         private static readonly KeyCode[] RowKeyCode0 = {KeyCode.Escape, KeyCode.F1, KeyCode.F2, KeyCode.F3, KeyCode.F4, KeyCode.F5, KeyCode.F6, KeyCode.F7, KeyCode.F8, KeyCode.F9, KeyCode.F10, KeyCode.F11, KeyCode.F12};
         private static readonly KeyCode[] RowKeyCode1 = {KeyCode.BackQuote, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0, KeyCode.Minus, KeyCode.Equals, KeyCode.Backspace};
@@ -53,42 +55,24 @@ namespace CagrsLib.Input.Windows
         private InputConfigure _editConfigure;
         private InputOperation _editOperation;
 
+        private List<KeyCode> _selected;
+
         private bool _isShowAllOperations;
 
         private List<InputOperation> _removeOperations;
 
-        private readonly Color[] _colors =
-        {
-            new(1f, 0.1f, 0.07f, 1f),
-            new (0.12f, 1f, 0.13f, 1f),
-            new (0.16f, 0.31f, 1f, 1f),
-            new (0.91f, 1f, 0.24f, 1f),
-            new (0.75f, 0.31f, 1f, 1f),
-            new (0.32f, 1f, 0.74f, 1f),
-            new (1f, 0.52f, 0.05f, 1f),
-            new (0.39f, 0.14f, 1f, 1f),
-            new (0.06f, 0.79f, 1f, 1f),
-            new (0.76f, 1f, 0.61f, 1f),
-            new (0.58f, 0.06f, 0.04f, 1f),
-            new (0.07f, 0.62f, 0.08f, 1f),
-            new (0.09f, 0.18f, 0.57f, 1f),
-            new (0.59f, 0.65f, 0.15f, 1f),
-            new (0.44f, 0.18f, 0.58f, 1f),
-            new (0.2f, 0.64f, 0.47f, 1f),
-            new (0.65f, 0.33f, 0.03f, 1f),
-            new (0.25f, 0.09f, 0.66f, 1f),
-            new (0.04f, 0.48f, 0.62f, 1f),
-            new (0.47f, 0.61f, 0.38f, 1f)
-        };
+        private int _maxOperation = 20;
 
         public static void OpenConfigure(InputConfigure configure)
         {
             InputConfigureEditorWindow window = GetWindow<InputConfigureEditorWindow>("Keyboard");
 
             window._editConfigure = configure;
+            
+            window.RefreshSelectedKeyCodes();
 
-            window.minSize = new Vector2(1100, 580);
-            window.maxSize = new Vector2(1100, 580);
+            window.minSize = new Vector2(1100, 525);
+            window.maxSize = new Vector2(1100, 525);
 
             window._removeOperations = new List<InputOperation>();
         }
@@ -101,12 +85,16 @@ namespace CagrsLib.Input.Windows
             
             foreach (var operation in _removeOperations)
             {
+                foreach (var keyCode in operation.bindKeyCodes)
+                {
+                    RemoveFromSelectedKeyCodes(keyCode);
+                }
                 _editConfigure.operations.Remove(operation);
             }
             _removeOperations.Clear();
 
             DefaultColor();
-        
+            
             GUILayout.BeginHorizontal();
             
             GUILayout.BeginVertical();
@@ -155,9 +143,6 @@ namespace CagrsLib.Input.Windows
                     
                     EditorUtility.SetDirty(_editConfigure);
                 }
-                
-                GUI.backgroundColor = new Color(1f, 0f, 0.18f);
-                GUI.contentColor = new Color(0.92f, 0.99f, 1f);
 
                 if (GUILayout.Button("X"))
                 {
@@ -168,15 +153,12 @@ namespace CagrsLib.Input.Windows
                     GUILayout.EndHorizontal();
 
                     _editOperation = FindOrCreateFirst();
-                    
+
                     return;
                 }
                 
                 if (operation.Equals(_editOperation))
                     SelectedColor();
-
-                GUI.backgroundColor = GetColorByIndex(i);
-                GUI.contentColor = GetColorByIndex(i);
 
                 string editOperationName = EditorGUILayout.TextField(operation.name);
 
@@ -196,13 +178,24 @@ namespace CagrsLib.Input.Windows
 
             if (GUILayout.Button("+ Operation"))
             {
-                _editConfigure.operations.Add(new InputOperation
+                if (_editConfigure.operations.Count < _maxOperation)
                 {
-                    name = "MyOperation",
-                    bindKeyCodes = new List<KeyCode>().ToArray()
-                });
+                    _editConfigure.operations.Add(new InputOperation
+                    {
+                        name = "MyOperation",
+                        bindKeyCodes = new List<KeyCode>().ToArray()
+                    });
                     
-                EditorUtility.SetDirty(_editConfigure);
+                    EditorUtility.SetDirty(_editConfigure);
+                    
+                    RefreshSelectedKeyCodes();
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog("Warning!",
+                        $"The number of operations is full, the maximum is {_maxOperation}.",
+                        "OK");
+                }
             }
         }
 
@@ -216,15 +209,29 @@ namespace CagrsLib.Input.Windows
                 if (DrawButton(key, rowLength[i], rowKeyCode[i]))
                 {
                     List<KeyCode> keyCodes = new List<KeyCode>(_editOperation.bindKeyCodes);
+
+                    bool selected = IsSelected(rowKeyCode[i]);
+                    bool isOperationSelected = _editOperation.bindKeyCodes.Contains(rowKeyCode[i]);
                     
-                    if (_editOperation.bindKeyCodes.Contains(rowKeyCode[i]))
+                    if (selected)
                     {
-                        keyCodes.Remove(rowKeyCode[i]);
-                        _editOperation.bindKeyCodes = keyCodes.ToArray();
+                        if (isOperationSelected)
+                        {
+                            keyCodes.Remove(rowKeyCode[i]);
+                            RemoveFromSelectedKeyCodes(rowKeyCode[i]);
+                            _editOperation.bindKeyCodes = keyCodes.ToArray();
+                        }
+                        else
+                        {
+                            EditorUtility.DisplayDialog("Repeated binding!",
+                                "You cannot bind the same key to different operations, please try using other keys.",
+                                "OK");
+                        }
                     }
                     else
                     {
                         keyCodes.Add(rowKeyCode[i]);
+                        AddToSelectedKeyCodes(rowKeyCode[i]);
                         _editOperation.bindKeyCodes = keyCodes.ToArray();
                     }
                 }
@@ -237,6 +244,8 @@ namespace CagrsLib.Input.Windows
 
         private bool DrawButton(string key, float rowLength, KeyCode rowKeyCode)
         {
+            string bindOperationName = "";
+            
             if (_editOperation != null)
             {
                 if (_isShowAllOperations)
@@ -246,8 +255,8 @@ namespace CagrsLib.Input.Windows
                     {
                         if (operation.bindKeyCodes.Contains(rowKeyCode))
                         {
-                            GUI.backgroundColor = GetColorByIndex(i);
-                            GUI.contentColor = GetColorByIndex(i);
+                            SelectedColor();
+                            bindOperationName = "\n" + operation.name;
                         }
 
                         i++;
@@ -262,7 +271,7 @@ namespace CagrsLib.Input.Windows
                 }
             }
 
-            bool buttonResult = GUILayout.Button(key, GUILayout.Width(rowLength), GUILayout.Height(ButtonHeight));
+            bool buttonResult = GUILayout.Button(key + bindOperationName, GUILayout.Width(rowLength), GUILayout.Height(ButtonHeight));
         
             DefaultColor();
 
@@ -271,7 +280,7 @@ namespace CagrsLib.Input.Windows
 
         public void SelectedColor()
         {
-            GUI.backgroundColor = new Color(0f, 1f, 0.07f);
+            GUI.backgroundColor = new Color(0.09f, 0.86f, 1f);
             GUI.contentColor = new Color(0.92f, 0.99f, 1f);
         }
 
@@ -279,16 +288,6 @@ namespace CagrsLib.Input.Windows
         {
             GUI.contentColor = Color.white;
             GUI.backgroundColor = Color.gray;
-        }
-
-        private Color GetColorByIndex(int index)
-        {
-            if (index < _colors.Length)
-            {
-                return _colors[index];
-            }
-            
-            return Color.gray;
         }
 
         private InputOperation FindOrCreateFirst()
@@ -310,6 +309,40 @@ namespace CagrsLib.Input.Windows
             EditorUtility.SetDirty(_editConfigure);
 
             return _editConfigure.operations[0];
+        }
+
+        private void RefreshSelectedKeyCodes()
+        {
+            _selected = new List<KeyCode>();
+
+            foreach (var operation in _editConfigure.operations)
+            {
+                foreach (var keyCode in operation.bindKeyCodes)
+                {
+                    AddToSelectedKeyCodes(keyCode);
+                }
+            }
+        }
+
+        private void AddToSelectedKeyCodes(KeyCode keyCode)
+        {
+            if (!_selected.Contains(keyCode))
+            {
+                _selected.Add(keyCode);
+            }
+        }
+
+        private void RemoveFromSelectedKeyCodes(KeyCode keyCode)
+        {
+            if (_selected.Contains(keyCode))
+            {
+                _selected.Remove(keyCode);
+            }
+        }
+
+        private bool IsSelected(KeyCode keyCode)
+        {
+            return _selected.Contains(keyCode);
         }
     }
 }
